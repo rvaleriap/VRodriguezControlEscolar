@@ -1,0 +1,55 @@
+﻿@model ML.Alumno
+@{
+    ViewBag.Title = "AlumnoGetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <h2> Alumno</h2>
+    </div>
+    <hr />
+    <div class="row">
+        <div style="float:right">
+
+           
+        </div>
+    </div>
+    <div class="row">
+        @if (Model.Alumnos != null)
+        {
+            //tabla
+            <table class="table table.borderes table.responsive">
+                <thead>
+                    <tr>
+                        <td class="text-center" style=" font-weight:bold;">Seleccionar</td>
+                        <td class="text-center" style=" font-weight:bold;">Nombre Alumno</td>
+                        <td class="text-center" style=" font-weight:bold;"> Apellido Paterno</td>
+                        <td class="text-center" style=" font-weight:bold;"> Apellido Materno</td>
+                       
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (ML.Alumno alumno in Model.Alumnos)
+                    {
+                        <tr>
+                            <td class="text-center"><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "AlumnoMateria", new { IdAlumno = alumno.IdAlumno})"></a></td>
+
+                            <td>@alumno.Nombre</td>
+                            <td>@alumno.ApellidoPaterno</td>
+                            <td>@alumno.ApellidoMaterno</td>
+                           
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-danger" role="alert">Ocurrio un error al realizar la consulta </div>
+        }
+    </div>
+</div>
+
